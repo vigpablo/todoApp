@@ -1,0 +1,34 @@
+<header class="header">
+
+  <input
+    class="new-todo"
+    placeholder="What needs to be done?"
+    autofocus
+    [value]="text"
+    (keyup)="changeText($event)"
+    (keyup.enter)="addTodo()">
+</header>
+
+ <!-- PASO 1 el [value] del input será la propiedad "text", la cual va a ir cambiando
+por el (keyup)="changeText($event), y al enter se ejectuará addTodo() con su valor final -->
+
+
+<!-- Tmb se podría hacer más simple (siguiendo countryApp y gifsApp):
+
+  <input
+    class="new-todo"
+    placeholder="What needs to be done?"
+    autofocus
+    (keyup.enter) = addTodo(#txtInput.value)
+    #txtInput
+
+
+  TS:
+
+  @ViewChild('txtInput') txtInput!:ElementRef<HTMLInputELement>
+
+    addTodo(value):void{
+      this.todosService.addTodoServ(value)
+      this.txtInput.nativeElement.value = ''
+    }
+  -->

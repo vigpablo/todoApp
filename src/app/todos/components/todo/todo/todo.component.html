@@ -1,0 +1,25 @@
+<li [ngClass]="{editing: isEditing, completed: todo.isCompleted}">
+  <div class="view">
+    <input
+      class="toggle"
+      type="checkbox"
+      [checked]="todo.isCompleted"
+      (change)="toggleTodo()"
+    >
+    <label (dblclick)="setTodoInEditMode()">{{todo.text}}</label>
+    <button class="destroy" (click)="removeTodo()"></button>
+  </div>
+  <ng-container *ngIf="isEditing">
+    <input
+      class="edit"
+      #txtInput
+      [value]="editingText"
+      (keyup)="changeText($event)"
+      (keyup.enter)="changeTodo()">
+  </ng-container>
+</li>
+
+<!-- (dblclick)="setTodoInEditMode() emite el id al main que torna isEditing-input- en true
+y habilita el html input -->
+
+

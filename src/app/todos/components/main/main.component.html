@@ -1,0 +1,46 @@
+<section class="main" [ngClass]="{hidden: noTodoClass()}">
+  <input
+    id="toggle-all"
+    class="toggle-all"
+    type="checkbox"
+    [checked]="isAllTodosSelected()"
+    (change)="toggleAllTodos($event)"
+    >
+    <label for="toggle-all">Mark all as completed</label>
+  <ul class="todo-list">
+    <app-todos-todo
+      *ngFor="let todo of visibleTodos()"
+      [todo]="todo"
+      (setEditingId)="setEditingId($event)"
+      [isEditing]="editingId === todo.id"
+    ></app-todos-todo>
+  </ul>
+</section>
+
+<!-- el ngFor itera el template del todo.component y le envía al mismo el valor del todo por su input.
+  Al hacerle doble click al todo, el todo component retorna el valor del id a través del output y el main lo asigna al editingId,
+  por medio del setEditindId($event) -- el $event del setEditingId es el valor que viene del todo.component -- Este Id, al ser igual al id del todo que se esta clickeando
+  vuelve al todo.component tornando el isEditing en true y habilita el html de la edición -->
+
+
+<!--
+  <section class="main">
+  <ul class="todo-list">
+    <div *ngFor="let todo of visibleTodos()">
+      {{todo.text}}
+    </div>
+  </ul>
+</section>
+ -->
+
+
+<!--
+  <section class="main">
+  <ul class="todo-list">
+    <div *ngFor="let todo of todosService.todosSig()">
+tengo acceso directo al signal desde la propiedad todosService
+{{todo.text}}
+</div>
+</ul>
+</section>
+ -->
